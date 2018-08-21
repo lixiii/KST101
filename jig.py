@@ -4,6 +4,11 @@ import serial
 from bcolours import BC
 ser = serial.Serial()
 
+# the following variables are obtained from the communication protocol and applies to the KST101
+des = 0x50  # generic USB
+source = 0x01  # host
+
+
 # Initialisation
 ################
 # WARNING
@@ -19,13 +24,21 @@ def init( port = '/dev/serial/by-id/usb-Thorlabs_Stepper_Controller_26001411-if0
 
 # Identify the controller by asking it to flash its screen
 def identify():
-    # the following variables are obtained from the communication protocol and applies to the KST101
-    des = 0x50  # generic USB
-    source = 0x01  # host
     cmdIdentify = bytearray([ 0x23, 0x02, 0, 0, des, source ])
     print(BC.OKGREEN + "Sending command 'MGMSG_MOD_IDENTIFY' to controller. " + BC.ENDC)
     ser.write(cmdIdentify)
 
+
+# Move to home
+def home():
+    cmdHome = bytearray([ 0x43, 0x04, 0, 0, des, source ])
+    print(BC.HEADER + "Sending command 'MGMSG_MOT_MOVE_HOME' to controller. Waiting for completion response" + BC.ENDC)
+    ser.write(cmdHome)
+    resp = ser.read(6) # message consists of 6 bytes
+    if resp[0] == 0x44 and resp[1] == 0x04:
+        print(BC.OKGREEN + "Homing completed successfully." + BC.ENDC)
+    else:
+        print(BC.FAIL + "Command failed. Response received:" + resp.hex() + BC.ENDC)
 
 
 def closePort():
