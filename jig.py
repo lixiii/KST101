@@ -38,7 +38,8 @@ def home():
     if resp[0] == 0x44 and resp[1] == 0x04:
         print(BC.OKGREEN + "Homing completed successfully." + BC.ENDC)
     else:
-        print(BC.FAIL + "Command failed. Response received:" + resp.hex() + BC.ENDC)
+        print(BC.FAIL + "Command failed. Controller responds with error. Response received:" + resp.hex() + BC.ENDC)
+        raise Exception("Controller Error")
 
 
 def closePort():

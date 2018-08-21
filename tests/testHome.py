@@ -14,5 +14,5 @@
 import jig
 
 jig.init()
-jig.home()
+assert jig.home()
 jig.closePort()
