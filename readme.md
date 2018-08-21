@@ -4,7 +4,7 @@ This library is designed to control the Thorlabs KST101 Step motor controller to
 
 ## Usage
 
-Simple import the jig.py module and initialise it 
+Simply import the jig.py module and initialise it 
 
 ```python
 import jig
