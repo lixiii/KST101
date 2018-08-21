@@ -12,3 +12,6 @@ This library is designed to control the Thorlabs KST101 Step motor controller to
 ```
 $python3 test.py
 ```
+
+### Location of the datasheet
+https://www.thorlabs.com/Software/Motion%20Control/APT_Communications_Protocol.pdf
