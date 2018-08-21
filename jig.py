@@ -74,7 +74,7 @@ def move(position):
 
     posByteArray = list( int(posCount).to_bytes(4, byteorder="little", signed=True) )
     cmd = bytearray([ 0x48, 0x04, 0x06, 0, des | 0x80, source, 0, 0] + posByteArray )
-    print(BC.HEADER + "Sending command 'MGMSG_MOT_MOVE_ABSOLUTE' to controller. Waiting for completion response" + BC.ENDC)
+    print(BC.HEADER + "Sending relative motion command to controller. Waiting for completion response" + BC.ENDC)
     ser.write(cmd)
 
     # listen for move complete command
@@ -91,7 +91,7 @@ def step(posCount):
 
     posByteArray = list( int(posCount).to_bytes(4, byteorder="little", signed=True) )
     cmd = bytearray([ 0x48, 0x04, 0x06, 0, des | 0x80, source, 0, 0] + posByteArray )
-    print(BC.HEADER + "Sending command 'MGMSG_MOT_MOVE_ABSOLUTE' to controller. Waiting for completion response" + BC.ENDC)
+    print(BC.HEADER + "Sending encoder count and relative motion command to controller. Waiting for completion response" + BC.ENDC)
     ser.write(cmd)
 
     # listen for move complete command
