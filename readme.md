@@ -10,7 +10,7 @@ This library is designed to control the Thorlabs KST101 Step motor controller to
 *NOTE: Since Python 3 is used, you need to run all the scripts using python3. For example run*
 
 ```
-$python3 test.py
+$ python3 test.py
 ```
 
 ### Location of the datasheet
